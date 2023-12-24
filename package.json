@@ -4,12 +4,13 @@
   "description": "turing machine visualization",
   "main": "main.js",
   "scripts": {
-    "test": ""
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "d3": "^7.8.5",
+    "jest": "^29.7.0",
     "js-yaml": "^4.1.0"
   }
 }
