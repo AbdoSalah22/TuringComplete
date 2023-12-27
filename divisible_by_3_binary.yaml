@@ -1,0 +1,58 @@
+states:
+  - q0
+  - q1
+  - q2
+  - accept
+
+initial_state: q0
+accept_state: accept
+reject_state: q2
+
+transitions:
+  - current_state: q0
+    input_symbol: "0"
+    next_state: q0
+    write_symbol: ""
+    move: R
+
+  - current_state: q0
+    input_symbol: "1"
+    next_state: q1
+    write_symbol: ""
+    move: R
+
+  - current_state: q0
+    input_symbol: " "
+    next_state: accept
+    write_symbol: ""
+    move: R
+
+  - current_state: q1
+    input_symbol: "0"
+    next_state: q2
+    write_symbol: ""
+    move: R
+
+  - current_state: q1
+    input_symbol: "1"
+    next_state: q0
+    write_symbol: ""
+    move: R
+
+  - current_state: q2
+    input_symbol: "0"
+    next_state: q1
+    write_symbol: ""
+    move: R
+
+  - current_state: q2
+    input_symbol: "1"
+    next_state: q2
+    write_symbol: ""
+    move: R
+
+positions:
+  q0: [230, 250]
+  accept: [230, 150]
+  q1: [400, 250]
+  q2: [570, 250]

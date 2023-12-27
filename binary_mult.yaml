@@ -1,0 +1,345 @@
+states:
+  - start
+  - init
+  - right
+  - readB
+  - addA
+  - doubleL
+  - double
+  - shift
+  - shift_0
+  - shift_1
+  - tidy
+  - done
+  - rewrite
+  - back_0
+  - back_1
+  - carry
+  - add_0
+  - add_1
+  - have_0
+  - have_1
+  - read
+
+alphabet:
+  - 0
+  - 1
+
+tape_alphabet:
+  - 0
+  - 1
+  - "*"
+  - "+"
+  - " "
+  - O
+  - I
+  - c
+
+initial_state: start
+accept_state: done
+reject_state: ""
+
+transitions:
+  - current_state: start
+    input_symbol: ["0", "1"]
+    next_state: init
+    write_symbol: ""
+    move: L
+
+  - current_state: init
+    input_symbol: " "
+    next_state: right
+    write_symbol: "+"
+    move: R
+
+  - current_state: right
+    input_symbol: ["0", "1", "*"]
+    next_state: right
+    write_symbol: ""
+    move: R
+
+  - current_state: right
+    input_symbol: " "
+    next_state: readB
+    write_symbol: ""
+    move: L
+
+  - current_state: readB
+    input_symbol: "0"
+    next_state: doubleL
+    write_symbol: " "
+    move: L
+
+  - current_state: readB
+    input_symbol: "1"
+    next_state: addA
+    write_symbol: " "
+    move: L
+
+  - current_state: addA
+    input_symbol: ["0", "1"]
+    next_state: addA
+    write_symbol: ""
+    move: L
+
+  - current_state: addA
+    input_symbol: "*"
+    next_state: read
+    write_symbol: ""
+    move: L
+
+  - current_state: doubleL
+    input_symbol: ["0", "1"]
+    next_state: doubleL
+    write_symbol: ""
+    move: L
+
+  - current_state: doubleL
+    input_symbol: "*"
+    next_state: shift
+    write_symbol: "0"
+    move: R
+
+  - current_state: double
+    input_symbol: ["0", "1", "+"]
+    next_state: double
+    write_symbol: ""
+    move: R
+
+  - current_state: double
+    input_symbol: "*"
+    next_state: shift
+    write_symbol: "0"
+    move: R
+
+  - current_state: shift
+    input_symbol: "0"
+    next_state: shift_0
+    write_symbol: "*"
+    move: R
+
+  - current_state: shift
+    input_symbol: "1"
+    next_state: shift_1
+    write_symbol: "*"
+    move: R
+
+  - current_state: shift
+    input_symbol: " "
+    next_state: tidy
+    write_symbol: ""
+    move: L
+
+  - current_state: shift_0
+    input_symbol: "0"
+    next_state: shift_0
+    write_symbol: ""
+    move: R
+
+  - current_state: shift_0
+    input_symbol: "1"
+    next_state: shift_1
+    write_symbol: "0"
+    move: R
+
+  - current_state: shift_0
+    input_symbol: " "
+    next_state: right
+    write_symbol: "0"
+    move: R
+
+  - current_state: shift_1
+    input_symbol: "0"
+    next_state: shift_0
+    write_symbol: "1"
+    move: R
+
+  - current_state: shift_1
+    input_symbol: "1"
+    next_state: shift_1
+    write_symbol: ""
+    move: R
+
+  - current_state: shift_1
+    input_symbol: " "
+    next_state: right
+    write_symbol: "1"
+    move: R
+
+  - current_state: tidy
+    input_symbol: ["0", "1"]
+    next_state: tidy
+    write_symbol: " "
+    move: L
+
+  - current_state: tidy
+    input_symbol: "+"
+    next_state: done
+    write_symbol: " "
+    move: L
+
+  - current_state: read
+    input_symbol: "0"
+    next_state: have_0
+    write_symbol: c
+    move: L
+
+  - current_state: read
+    input_symbol: "1"
+    next_state: have_1
+    write_symbol: c
+    move: L
+
+  - current_state: read
+    input_symbol: "+"
+    next_state: rewrite
+    write_symbol: ""
+    move: L
+
+  - current_state: have_0
+    input_symbol: ["0", "1"]
+    next_state: have_0
+    write_symbol: ""
+    move: L
+
+  - current_state: have_0
+    input_symbol: "+"
+    next_state: add_0
+    write_symbol: ""
+    move: L
+
+  - current_state: have_1
+    input_symbol: ["0", "1"]
+    next_state: have_1
+    write_symbol: ""
+    move: L
+
+  - current_state: have_1
+    input_symbol: "+"
+    next_state: add_1
+    write_symbol: ""
+    move: L
+
+  - current_state: add_0
+    input_symbol: ["0", " "]
+    next_state: back_0
+    write_symbol: O
+    move: R
+
+  - current_state: add_0
+    input_symbol: "1"
+    next_state: back_0
+    write_symbol: I
+    move: R
+
+  - current_state: add_0
+    input_symbol: [O, I]
+    next_state: add_0
+    write_symbol: ""
+    move: L
+
+  - current_state: add_1
+    input_symbol: ["0", " "]
+    next_state: back_1
+    write_symbol: I
+    move: R
+
+  - current_state: add_1
+    input_symbol: "1"
+    next_state: carry
+    write_symbol: O
+    move: L
+
+  - current_state: add_1
+    input_symbol: [O, I]
+    next_state: add_1
+    write_symbol: ""
+    move: L
+
+  - current_state: carry
+    input_symbol: ["0", " "]
+    next_state: back_1
+    write_symbol: "1"
+    move: R
+
+  - current_state: carry
+    input_symbol: "1"
+    next_state: carry
+    write_symbol: "0"
+    move: L
+
+  - current_state: back_0
+    input_symbol: ["0", "1", O, I, "+"]
+    next_state: back_0
+    write_symbol: ""
+    move: R
+
+  - current_state: back_0
+    input_symbol: c
+    next_state: read
+    write_symbol: "0"
+    move: L
+
+  - current_state: back_1
+    input_symbol: ["0", "1", O, I, "+"]
+    next_state: back_1
+    write_symbol: ""
+    move: R
+
+  - current_state: back_1
+    input_symbol: c
+    next_state: read
+    write_symbol: "1"
+    move: L
+
+  - current_state: rewrite
+    input_symbol: O
+    next_state: rewrite
+    write_symbol: "0"
+    move: L
+
+  - current_state: rewrite
+    input_symbol: I
+    next_state: rewrite
+    write_symbol: "1"
+    move: L
+
+  - current_state: rewrite
+    input_symbol: ["0", "1"]
+    next_state: rewrite
+    write_symbol: ""
+    move: L
+
+  - current_state: rewrite
+    input_symbol: " "
+    next_state: double
+    write_symbol: ""
+    move: R
+
+positions:
+  start: [-80, 600]
+  init: [-60, 600]
+  tidy: [70, 600]
+  done: [80, 400]
+
+  right: [-30, 500]
+  shift: [50, 620]
+  shift_1: [10, 600]
+  shift_0: [10, 450]
+
+  readB: [-30, 300]
+  addA: [-70, 300]
+  doubleL: [40, 300]
+
+  rewrite: [-20, 200]
+  double: [55, 200]
+
+  back_0: [-70, 100]
+  read: [-30, 100]
+  back_1: [5, 90]
+  carry: [40, 100]
+
+  add_0: [-90, 0]
+  have_0: [-50, 0]
+  have_1: [0, 0]
+  add_1: [40, 0]

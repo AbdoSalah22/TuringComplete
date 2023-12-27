@@ -1,0 +1,37 @@
+states:
+  - right
+  - carry
+  - done
+
+initial_state: right
+accept_state: done
+
+transitions:
+  - current_state: right
+    input_symbol: ["0", "1"]
+    next_state: right
+    write_symbol: ""
+    move: R
+
+  - current_state: right
+    input_symbol: " "
+    next_state: carry
+    write_symbol: ""
+    move: L
+
+  - current_state: carry
+    input_symbol: "1"
+    next_state: carry
+    write_symbol: "0"
+    move: L
+
+  - current_state: carry
+    input_symbol: [0, " "]
+    next_state: done
+    write_symbol: "1"
+    move: L
+
+positions:
+  right: [230, 250]
+  carry: [400, 250]
+  done: [570, 250]
