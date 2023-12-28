@@ -233,7 +233,7 @@ class TuringMachineWindow(QMainWindow):
             self.program_state.setText("ACCEPTED")
             self.program_state.setStyleSheet(accepted_stylesheet)
 
-        elif self.current_state == self.turing_machine.reject_state and not self.transitioned:
+        elif self.current_state in [str(item) for item in self.turing_machine.reject_state] and not self.transitioned:
             self.program_state.setText("Rejected")
             self.program_state.setStyleSheet(rejected_stylesheet)
 
