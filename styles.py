@@ -44,14 +44,18 @@ title_stylesheet = (
 accepted_stylesheet = (
     "QLabel {"
     "    color: #45a049;"
-    "    font-size: 16px; /* Larger font size */"
+    "    font-size: 16px;"
+    "    qproperty-alignment: AlignCenter;"
+    "    font-weight: bold;"
     "}"
 )
 
 rejected_stylesheet = (
     "QLabel {"
     "    color: #FF0000;"
-    "    font-size: 16px; /* Larger font size */"
+    "    font-size: 16px;"
+    "    qproperty-alignment: AlignCenter;"
+    "    font-weight: bold;"
     "}"
 )
 
