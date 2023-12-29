@@ -5,6 +5,7 @@ states:
 
 initial_state: right
 accept_state: done
+reject_state: []
 
 transitions:
   - current_state: right

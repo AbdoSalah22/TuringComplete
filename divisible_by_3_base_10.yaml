@@ -6,7 +6,7 @@ states:
 
 initial_state: q0
 accept_state: accept
-reject_state: q2
+reject_state: [qo, q1, q2]
 
 transitions:
   - current_state: q0
