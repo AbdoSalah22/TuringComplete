@@ -1,2 +1,2 @@
 # TuringComplete
-Turing Machine visualization and simulation
+Turing Machine Visualization and Simulation
